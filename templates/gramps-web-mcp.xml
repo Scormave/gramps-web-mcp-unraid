@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>gramps-web-mcp</Name>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:latest</Repository>
+  <Registry>https://ghcr.io</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Scormave/gramps-web-mcp/issues</Support>
+  <Project>https://github.com/Scormave/gramps-web-mcp</Project>
+  <Overview>MCP server for Gramps Web — structured AI agent access to your family tree over HTTP.</Overview>
+  <Description>
+    Companion service for [Gramps Web](https://www.grampsweb.org/). Exposes the [Model Context Protocol](https://modelcontextprotocol.io/) over Streamable HTTP so MCP clients (Cursor, Claude Desktop, Open WebUI, and others) can search, read, and optionally modify your genealogy data.
+
+    **Prerequisites**
+    - A running Gramps Web instance with API access
+    - API username, password, and tree UUID
+
+    **Usage**
+    - After install, point MCP clients at `http://[host]:[PORT:8080]/mcp`
+  </Description>
+  <Category>Tools:Utilities</Category>
+  <Icon>https://raw.githubusercontent.com/Scormave/gramps-web-mcp-unraid/main/icon.svg</Icon>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/Scormave/gramps-web-mcp-unraid/main/templates/gramps-web-mcp.xml</TemplateURL>
+  <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
+  <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
+  <Changes>
+    ### 2026-06-14
+    - Initial Community Applications template
+  </Changes>
+  <PostArgs>--restart=unless-stopped</PostArgs>
+  <Config Name="Gramps API URL" Target="GRAMPS_API_URL" Default="" Mode="" Description="Base URL of your Gramps Web instance (no trailing slash)." Type="Variable" Display="always" Required="true" Mask="false">https://gramps.example.com</Config>
+  <Config Name="Gramps Username" Target="GRAMPS_USERNAME" Default="" Mode="" Description="Gramps Web API username." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Gramps Password" Target="GRAMPS_PASSWORD" Default="" Mode="" Description="Gramps Web API password or token." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Gramps Tree ID" Target="GRAMPS_TREE_ID" Default="" Mode="" Description="Tree UUID on the Gramps Web server." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Read Only Mode" Target="GRAMPS_READ_ONLY" Default="false" Mode="" Description="Set to true to block create, update, and delete tool calls while keeping tools visible." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+  <Config Name="Enable Media Resources" Target="GRAMPS_MEDIA_RESOURCES_ENABLED" Default="false" Mode="" Description="Enable binary media tools and resources for thumbnails and full files." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Media Max Bytes" Target="GRAMPS_MEDIA_MAX_BYTES" Default="5242880" Mode="" Description="Maximum bytes returned by any media resource." Type="Variable" Display="advanced" Required="false" Mask="false">5242880</Config>
+  <Config Name="Media Allowed MIME Types" Target="GRAMPS_MEDIA_ALLOWED_MIME_TYPES" Default="image/jpeg,image/png,image/webp,application/pdf" Mode="" Description="Comma-separated MIME allowlist for media downloads." Type="Variable" Display="advanced" Required="false" Mask="false">image/jpeg,image/png,image/webp,application/pdf</Config>
+  <Config Name="Allow Private Media" Target="GRAMPS_MEDIA_ALLOW_PRIVATE" Default="false" Mode="" Description="Allow media bytes for Gramps records marked private." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="MCP HTTP Port" Target="8080" Default="8080" Mode="tcp" Description="Host port mapped to container port 8080 (MCP endpoint at /mcp)." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+</Container>

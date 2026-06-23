@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<CommunityApplications>
+  <Profile>
+    Unraid Community Applications templates for [gramps-web-mcp](https://github.com/Scormave/gramps-web-mcp) — an MCP server that gives AI agents structured access to [Gramps Web](https://www.grampsweb.org/) family trees.
+
+    Report issues with the container image or MCP server on the [main project](https://github.com/Scormave/gramps-web-mcp/issues). Use this repository for template-specific problems.
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/Scormave/gramps-web-mcp-unraid/main/icon.svg</Icon>
+  <WebPage>https://github.com/Scormave/gramps-web-mcp-unraid</WebPage>
+</CommunityApplications>
