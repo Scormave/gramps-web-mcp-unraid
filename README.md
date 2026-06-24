@@ -6,7 +6,7 @@ Unraid [Community Applications](https://forums.unraid.net/topic/38582-plug-in-co
 
 | Template | Image | Description |
 |----------|-------|-------------|
-| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:latest` | MCP server for Gramps Web over HTTP |
+| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:1.0.0` | MCP server for Gramps Web over HTTP |
 
 ## Prerequisites
 
@@ -40,12 +40,13 @@ Official guides:
 - [ ] GitHub repository is public
 - [ ] `ca_profile.xml` has a non-empty `<Profile>` section
 - [ ] `TemplateURL` in each template points at the raw GitHub URL for that XML file on `main`
-- [ ] `ghcr.io/scormave/gramps-web-mcp:latest` is public and pullable
+- [ ] `ghcr.io/scormave/gramps-web-mcp:1.0.0` is public and pullable
 - [ ] Clean install tested on Unraid with valid Gramps Web credentials
 - [ ] Validate and Scan pass in the submission portal
 
 ## Support
 
+- Unraid install help: [forums support thread](https://forums.unraid.net/topic/199622-support-gramps-web-mcp-mcp-server-for-gramps-web-ai-genealogy)
 - MCP server bugs and features: [gramps-web-mcp issues](https://github.com/Scormave/gramps-web-mcp/issues)
 - Template issues: [gramps-web-mcp-unraid issues](https://github.com/Scormave/gramps-web-mcp-unraid/issues)
 

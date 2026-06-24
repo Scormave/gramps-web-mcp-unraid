@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:latest</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/Scormave/gramps-web-mcp/issues</Support>
+  <Support>https://forums.unraid.net/topic/199622-support-gramps-web-mcp-mcp-server-for-gramps-web-ai-genealogy</Support>
   <Project>https://github.com/Scormave/gramps-web-mcp</Project>
+  <License>AGPL-3.0</License>
   <Overview>MCP server for Gramps Web — structured AI agent access to your family tree over HTTP.</Overview>
   <Description>
     Companion service for [Gramps Web](https://www.grampsweb.org/). Exposes the [Model Context Protocol](https://modelcontextprotocol.io/) over Streamable HTTP so MCP clients (Cursor, Claude Desktop, Open WebUI, and others) can search, read, and optionally modify your genealogy data.
@@ -27,6 +28,11 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-06-24
+    - Pin container image to 1.0.0
+    - Add AGPL-3.0 license metadata
+    - Point support link to Unraid forums thread
+
     ### 2026-06-14
     - Initial Community Applications template
   </Changes>
