@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -29,7 +29,7 @@
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
     ### 2026-06-24
-    - Pin container image to 1.0.0
+    - Pin container image to 1.0.1
     - Add AGPL-3.0 license metadata
     - Point support link to Unraid forums thread
 
