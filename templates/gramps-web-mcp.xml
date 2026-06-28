@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.3</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.4</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,9 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-06-28
+    - Pin container image to 1.0.4 (Gramps ID resolution, stdio logging fixes, ID cache)
+
     ### 2026-06-27
     - Pin container image to 1.0.3
 
