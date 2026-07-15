@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.5</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.6</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,9 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-07-15
+    - Pin container image to 1.0.6 (place hierarchy, richer date parsing, enclosedBy rename, media descriptions)
+
     ### 2026-07-06
     - Pin container image to 1.0.5 (auth recovery, typed media content, agent-friendly JSON input, quieter logging)
 
