@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.6</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.7</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,10 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-08-17
+    - Pin container image to 1.0.7 (optional MCP_API_KEY for HTTP/SSE, SQLite-friendly mutation serialization, Linux MCPB bundles)
+    - Add MCP API Key, Mutation Serialize, and Mutation Min Interval template variables
+
     ### 2026-07-15
     - Pin container image to 1.0.6 (place hierarchy, richer date parsing, enclosedBy rename, media descriptions)
 
@@ -54,9 +58,12 @@
   <Config Name="Gramps Password" Target="GRAMPS_PASSWORD" Default="" Mode="" Description="Gramps Web API password or token." Type="Variable" Display="always" Required="true" Mask="true"/>
   <Config Name="Gramps Tree ID" Target="GRAMPS_TREE_ID" Default="" Mode="" Description="Tree UUID on the Gramps Web server." Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Read Only Mode" Target="GRAMPS_READ_ONLY" Default="false" Mode="" Description="Set to true to block create, update, and delete tool calls while keeping tools visible." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+  <Config Name="MCP API Key" Target="MCP_API_KEY" Default="" Mode="" Description="Optional API key for HTTP/SSE access (Bearer or X-Api-Key). Recommended when the MCP port is reachable from other machines." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="Mutation Serialize" Target="GRAMPS_MUTATION_SERIALIZE" Default="true" Mode="" Description="Serialize create, update, and delete HTTP calls in-process to reduce SQLite lock errors." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="Mutation Min Interval MS" Target="GRAMPS_MUTATION_MIN_INTERVAL_MS" Default="0" Mode="" Description="Optional minimum milliseconds between mutation HTTP calls (0 disables pacing)." Type="Variable" Display="advanced" Required="false" Mask="false">0</Config>
   <Config Name="Enable Media Resources" Target="GRAMPS_MEDIA_RESOURCES_ENABLED" Default="false" Mode="" Description="Enable binary media tools and resources for thumbnails and full files." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="Media Max Bytes" Target="GRAMPS_MEDIA_MAX_BYTES" Default="5242880" Mode="" Description="Maximum bytes returned by any media resource." Type="Variable" Display="advanced" Required="false" Mask="false">5242880</Config>
-  <Config Name="Media Allowed MIME Types" Target="GRAMPS_MEDIA_ALLOWED_MIME_TYPES" Default="image/jpeg,image/png,image/webp,application/pdf" Mode="" Description="Comma-separated MIME allowlist for media downloads." Type="Variable" Display="advanced" Required="false" Mask="false">image/jpeg,image/png,image/webp,application/pdf</Config>
+  <Config Name="Media Allowed MIME Types" Target="GRAMPS_MEDIA_ALLOWED_MIME_TYPES" Default="image/jpeg,image/png,image/webp,image/avif,application/pdf" Mode="" Description="Comma-separated MIME allowlist for media downloads." Type="Variable" Display="advanced" Required="false" Mask="false">image/jpeg,image/png,image/webp,image/avif,application/pdf</Config>
   <Config Name="Allow Private Media" Target="GRAMPS_MEDIA_ALLOW_PRIVATE" Default="false" Mode="" Description="Allow media bytes for Gramps records marked private." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="MCP HTTP Port" Target="8080" Default="8080" Mode="tcp" Description="Host port mapped to container port 8080 (MCP endpoint at /mcp)." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
 </Container>
