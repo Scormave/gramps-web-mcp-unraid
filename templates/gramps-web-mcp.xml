@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.7</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:1.0.8</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,11 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-09-18
+    - Pin container image to 1.0.8
+    - Include application name and build version in the User-Agent header on all Gramps Web requests, including authentication, media downloads, and health checks
+    - Upgrade server and Docker images to .NET 10 LTS on Ubuntu 24.04 (Noble)
+
     ### 2026-08-17
     - Pin container image to 1.0.7 (optional MCP_API_KEY for HTTP/SSE, SQLite-friendly mutation serialization, Linux MCPB bundles)
     - Add MCP API Key, Mutation Serialize, and Mutation Min Interval template variables
