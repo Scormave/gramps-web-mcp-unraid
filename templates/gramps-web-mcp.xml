@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.0.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.0.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,7 +28,13 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
-    ### 2026-10-01
+    ### 2026-10-01 (2.0.1)
+    - Pin container image to 2.0.1
+    - Add configurable GRAMPS_LOG_LEVEL; Information logs API method, path, status, duration, and body length without genealogy data. Debug and Trace include full URLs and request/response bodies.
+    - Ignore unresolved placeholders in blank optional MCPB fields and fall back to password login when a refresh token is rejected with HTTP 422.
+    - Fix get_recent_changes pagination so pagesize limits the returned history.
+
+    ### 2026-10-01 (2.0.0)
     - Pin container image to 2.0.0
     - Breaking change: consolidate read, delete, timeline, person-tree, reference, and media tools; MCP catalog now has 31 tools instead of 57. Review the upstream 1.x migration guide before upgrading clients: https://github.com/Scormave/gramps-web-mcp/blob/v2.0.0/GrampsWeb.Mcp/docs/MIGRATING_TO_2.md
     - Add linkMode (replace/add/remove) to link updates and support refresh-token authentication without username/password.
@@ -79,5 +85,6 @@
   <Config Name="Media Max Bytes" Target="GRAMPS_MEDIA_MAX_BYTES" Default="5242880" Mode="" Description="Maximum bytes returned by any media resource." Type="Variable" Display="advanced" Required="false" Mask="false">5242880</Config>
   <Config Name="Media Allowed MIME Types" Target="GRAMPS_MEDIA_ALLOWED_MIME_TYPES" Default="image/jpeg,image/png,image/webp,image/avif,application/pdf" Mode="" Description="Comma-separated MIME allowlist for media downloads." Type="Variable" Display="advanced" Required="false" Mask="false">image/jpeg,image/png,image/webp,image/avif,application/pdf</Config>
   <Config Name="Allow Private Media" Target="GRAMPS_MEDIA_ALLOW_PRIVATE" Default="false" Mode="" Description="Allow media bytes for Gramps records marked private." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Gramps Log Level" Target="GRAMPS_LOG_LEVEL" Default="Information" Mode="" Description="Server log level: Trace, Debug, Information, Warning, Error, Critical, or None. Debug and Trace log genealogy data from API bodies." Type="Variable" Display="advanced" Required="false" Mask="false">Information</Config>
   <Config Name="MCP HTTP Port" Target="8080" Default="8080" Mode="tcp" Description="Host port mapped to container port 8080 (MCP endpoint at /mcp)." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
 </Container>
