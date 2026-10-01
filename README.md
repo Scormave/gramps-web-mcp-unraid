@@ -6,18 +6,20 @@ Unraid [Community Applications](https://forums.unraid.net/topic/38582-plug-in-co
 
 | Template | Image | Description |
 |----------|-------|-------------|
-| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:1.0.8` | MCP server for Gramps Web over HTTP |
+| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:2.0.0` | MCP server for Gramps Web over HTTP |
 
 ## Prerequisites
 
 - A running [Gramps Web](https://www.grampsweb.org/) instance with API credentials
 - The `ghcr.io/scormave/gramps-web-mcp` package must be **public** on GitHub Container Registry so Unraid can pull it without authentication
 
+Version 2.0.0 changes several MCP tool names and arguments. Review the [1.x migration guide](https://github.com/Scormave/gramps-web-mcp/blob/v2.0.0/GrampsWeb.Mcp/docs/MIGRATING_TO_2.md) before upgrading clients.
+
 ## Manual test on Unraid
 
 1. Docker → Add Container → **Template URL**:
    `https://raw.githubusercontent.com/Scormave/gramps-web-mcp-unraid/main/templates/gramps-web-mcp.xml`
-2. Set `GRAMPS_API_URL`, `GRAMPS_USERNAME`, `GRAMPS_PASSWORD`, and `GRAMPS_TREE_ID`
+2. Set `GRAMPS_API_URL`, `GRAMPS_TREE_ID`, and either `GRAMPS_USERNAME` plus `GRAMPS_PASSWORD` or `GRAMPS_REFRESH_TOKEN`
 3. Apply and confirm the container stays running
 4. From another machine, connect an MCP client to `http://<unraid-host>:8080/mcp`
 
@@ -40,7 +42,7 @@ Official guides:
 - [ ] GitHub repository is public
 - [ ] `ca_profile.xml` has a non-empty `<Profile>` section
 - [ ] `TemplateURL` in each template points at the raw GitHub URL for that XML file on `main`
-- [ ] `ghcr.io/scormave/gramps-web-mcp:1.0.8` is public and pullable
+- [ ] `ghcr.io/scormave/gramps-web-mcp:2.0.0` is public and pullable
 - [ ] Clean install tested on Unraid with valid Gramps Web credentials
 - [ ] Validate and Scan pass in the submission portal
 
