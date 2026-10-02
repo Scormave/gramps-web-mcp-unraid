@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.0.1</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.1.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,13 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-02 (2.1.0)
+    - Pin container image to 2.1.0
+    - Render media thumbnails locally as JPEG or PNG instead of using AVIF thumbnails from Gramps Web; default preview size increases to 1568 pixels and image metadata is stripped.
+    - Remove GRAMPS_MEDIA_ALLOWED_MIME_TYPES from the template: 2.1.0 ignores it and warns at startup if an existing Unraid configuration still sets it.
+    - Improve timeline, relationship, search, and object details while reducing API requests through batching and caching.
+    - Fix media Gramps ID resolution, citation source filtering, token recovery after Gramps Web restarts, and repeated logins on health checks.
+
     ### 2026-10-01 (2.0.1)
     - Pin container image to 2.0.1
     - Add configurable GRAMPS_LOG_LEVEL; Information logs API method, path, status, duration, and body length without genealogy data. Debug and Trace include full URLs and request/response bodies.
@@ -82,8 +89,7 @@
   <Config Name="Mutation Serialize" Target="GRAMPS_MUTATION_SERIALIZE" Default="true" Mode="" Description="Serialize create, update, and delete HTTP calls in-process to reduce SQLite lock errors." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="Mutation Min Interval MS" Target="GRAMPS_MUTATION_MIN_INTERVAL_MS" Default="0" Mode="" Description="Optional minimum milliseconds between mutation HTTP calls (0 disables pacing)." Type="Variable" Display="advanced" Required="false" Mask="false">0</Config>
   <Config Name="Enable Media Resources" Target="GRAMPS_MEDIA_RESOURCES_ENABLED" Default="false" Mode="" Description="Enable read_media and binary media resources for thumbnails and full files." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
-  <Config Name="Media Max Bytes" Target="GRAMPS_MEDIA_MAX_BYTES" Default="5242880" Mode="" Description="Maximum bytes returned by any media resource." Type="Variable" Display="advanced" Required="false" Mask="false">5242880</Config>
-  <Config Name="Media Allowed MIME Types" Target="GRAMPS_MEDIA_ALLOWED_MIME_TYPES" Default="image/jpeg,image/png,image/webp,image/avif,application/pdf" Mode="" Description="Comma-separated MIME allowlist for media downloads." Type="Variable" Display="advanced" Required="false" Mask="false">image/jpeg,image/png,image/webp,image/avif,application/pdf</Config>
+  <Config Name="Media Max Bytes" Target="GRAMPS_MEDIA_MAX_BYTES" Default="5242880" Mode="" Description="Maximum bytes returned by a media file or rendered preview; thumbnail generation can read originals up to 50 MiB or this limit if higher." Type="Variable" Display="advanced" Required="false" Mask="false">5242880</Config>
   <Config Name="Allow Private Media" Target="GRAMPS_MEDIA_ALLOW_PRIVATE" Default="false" Mode="" Description="Allow media bytes for Gramps records marked private." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="Gramps Log Level" Target="GRAMPS_LOG_LEVEL" Default="Information" Mode="" Description="Server log level: Trace, Debug, Information, Warning, Error, Critical, or None. Debug and Trace log genealogy data from API bodies." Type="Variable" Display="advanced" Required="false" Mask="false">Information</Config>
   <Config Name="MCP HTTP Port" Target="8080" Default="8080" Mode="tcp" Description="Host port mapped to container port 8080 (MCP endpoint at /mcp)." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
