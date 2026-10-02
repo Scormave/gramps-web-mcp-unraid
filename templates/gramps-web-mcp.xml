@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.1.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.1.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-02 (2.1.1)
+    - Pin container image to 2.1.1
+    - Show Gramps IDs in search results; name linked objects on person and family cards, the root person in trees, and other event participants in timelines. Clarify reference edits in recent changes.
+    - Hide unavailable thumbnail resources for non-image media, omit empty media and citation dates, and display names and dates consistently with Gramps Web.
+    - Keep relatives' events in person timelines when the person's first event has an imprecise date.
+
     ### 2026-10-02 (2.1.0)
     - Pin container image to 2.1.0
     - Render media thumbnails locally as JPEG or PNG instead of using AVIF thumbnails from Gramps Web; default preview size increases to 1568 pixels and image metadata is stripped.
