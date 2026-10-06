@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.2.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.3.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-05 (2.3.0)
+    - Pin container image to 2.3.0
+    - Breaking change: remove quick_add_person and add_event_to_person; use create_event with update_person (linkMode: add), or create_person with eventRefs instead.
+    - Add nameDate for primary place names and send MCP instructions that guide clients through search, links, and safe write order.
+    - Rewrite tool and parameter descriptions for agents; accept numeric text and place coordinates, reject empty updates, and show usable bookmark summaries.
+
     ### 2026-10-03 (2.2.0)
     - Pin container image to 2.2.0
     - Accept dates in all Gramps calendars, including alternate new-year styles, and common Gramps/GEDCOM date abbreviations.
