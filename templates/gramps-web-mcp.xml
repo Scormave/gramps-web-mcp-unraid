@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.3.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.3.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,13 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-07 (2.3.1)
+    - Pin container image to 2.3.1
+    - Preserve fields not being edited during updates, including reference metadata, attribute privacy and citations, note formatting, and fields added by newer Gramps versions.
+    - Preserve metadata on unchanged references and attributes in replace mode; keep attribute privacy, citations, and notes during creation where Gramps supports them.
+    - Remove the unsupported text parameter from create_citation and update_citation; store transcripts in a Transcript note linked through noteHandles instead.
+    - Reject unsupported citations and notes on source and citation attributes before saving.
+
     ### 2026-10-05 (2.3.0)
     - Pin container image to 2.3.0
     - Breaking change: remove quick_add_person and add_event_to_person; use create_event with update_person (linkMode: add), or create_person with eventRefs instead.
