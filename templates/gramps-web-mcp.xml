@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.3.1</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.4.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,13 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-08 (2.4.0)
+    - Pin container image to 2.4.0
+    - Upstream repository adds a read-only script to find data lost by update tools before 2.3.1 in Gramps Web transaction history.
+    - Add sortEvents to update_person and update_family to sort event links by date while preserving reference metadata.
+    - Set birth/death reference indexes when creating a person with those events; validate event roles and normalize known Gramps type names before saving.
+    - Show place type, coordinates and enclosing places in write results, and display non-Latin names without Unicode escapes in create results.
+
     ### 2026-10-07 (2.3.1)
     - Pin container image to 2.3.1
     - Preserve fields not being edited during updates, including reference metadata, attribute privacy and citations, note formatting, and fields added by newer Gramps versions.
