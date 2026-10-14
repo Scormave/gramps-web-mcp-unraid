@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.5.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.5.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-14 (2.5.1)
+    - Pin container image to 2.5.1
+    - Require GRAMPS_MEDIA_RESOURCES_ENABLED=true for create_media and update_media filePath uploads; hide create_media when media access is disabled.
+    - Expand a leading ${HOME} in GRAMPS_MEDIA_UPLOAD_DIRS so the Claude Desktop extension's default upload folder works.
+    - Clarify the media upload settings in the Unraid template and README.
+
     ### 2026-10-14 (2.5.0)
     - Pin container image to 2.5.0
     - Replace sortEvents with sort on update_person and update_family; sort also orders children, families, citations, and media without losing link metadata.
@@ -128,11 +134,11 @@
   <Config Name="MCP API Key" Target="MCP_API_KEY" Default="" Mode="" Description="Optional API key for HTTP/SSE access (Bearer or X-Api-Key). Recommended when the MCP port is reachable from other machines." Type="Variable" Display="advanced" Required="false" Mask="true"/>
   <Config Name="Mutation Serialize" Target="GRAMPS_MUTATION_SERIALIZE" Default="true" Mode="" Description="Serialize create, update, and delete HTTP calls in-process to reduce SQLite lock errors." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="Mutation Min Interval MS" Target="GRAMPS_MUTATION_MIN_INTERVAL_MS" Default="0" Mode="" Description="Optional minimum milliseconds between mutation HTTP calls (0 disables pacing)." Type="Variable" Display="advanced" Required="false" Mask="false">0</Config>
-  <Config Name="Enable Media Resources" Target="GRAMPS_MEDIA_RESOURCES_ENABLED" Default="false" Mode="" Description="Enable read_media and binary media resources for thumbnails and full files." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Enable Media Resources" Target="GRAMPS_MEDIA_RESOURCES_ENABLED" Default="false" Mode="" Description="Enable read_media, binary media resources, and uploads via create_media or update_media filePath." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="Media Max Bytes" Target="GRAMPS_MEDIA_MAX_BYTES" Default="5242880" Mode="" Description="Maximum bytes returned by a media file or rendered preview; thumbnail generation can read originals up to 50 MiB or this limit if higher." Type="Variable" Display="advanced" Required="false" Mask="false">5242880</Config>
   <Config Name="Allow Private Media" Target="GRAMPS_MEDIA_ALLOW_PRIVATE" Default="false" Mode="" Description="Allow media bytes for Gramps records marked private." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
-  <Config Name="Media Upload Folder" Target="/uploads" Default="" Mode="ro" Description="Optional host folder containing files to upload. Set Media Upload Directories to /uploads to enable create_media." Type="Path" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="Media Upload Directories" Target="GRAMPS_MEDIA_UPLOAD_DIRS" Default="" Mode="" Description="Absolute container folders allowed for media uploads, separated by colons; use /uploads with the Media Upload Folder mapping. Leave blank to disable create_media." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Media Upload Folder" Target="/uploads" Default="" Mode="ro" Description="Optional host folder containing files to upload. Also enable Media Resources and set Media Upload Directories to /uploads." Type="Path" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Media Upload Directories" Target="GRAMPS_MEDIA_UPLOAD_DIRS" Default="" Mode="" Description="Absolute container folders allowed for media uploads, separated by colons; use /uploads with the Media Upload Folder mapping. Uploads also require Enable Media Resources=true." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Media Upload Max Bytes" Target="GRAMPS_MEDIA_UPLOAD_MAX_BYTES" Default="52428800" Mode="" Description="Maximum size in bytes for a file uploaded by create_media or update_media (default 50 MiB)." Type="Variable" Display="advanced" Required="false" Mask="false">52428800</Config>
   <Config Name="Gramps Log Level" Target="GRAMPS_LOG_LEVEL" Default="Information" Mode="" Description="Server log level: Trace, Debug, Information, Warning, Error, Critical, or None. Debug and Trace log genealogy data from API bodies." Type="Variable" Display="advanced" Required="false" Mask="false">Information</Config>
   <Config Name="MCP HTTP Port" Target="8080" Default="8080" Mode="tcp" Description="Host port mapped to container port 8080 (MCP endpoint at /mcp)." Type="Port" Display="always" Required="true" Mask="false">8080</Config>

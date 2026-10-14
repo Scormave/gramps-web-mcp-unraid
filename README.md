@@ -6,7 +6,7 @@ Unraid [Community Applications](https://forums.unraid.net/topic/38582-plug-in-co
 
 | Template | Image | Description |
 |----------|-------|-------------|
-| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:2.5.0` | MCP server for Gramps Web over HTTP |
+| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:2.5.1` | MCP server for Gramps Web over HTTP |
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Version 2.3.0 removes `quick_add_person` and `add_event_to_person`. MCP clients 
 
 Version 2.3.1 removes the unsupported `text` argument from `create_citation` and `update_citation`. Store transcripts in a Transcript note and link it to the citation through `noteHandles`.
 
-Version 2.5.0 replaces `sortEvents` with `sort: "Events"` on `update_person` and `update_family`. To upload media, set the advanced Media Upload Folder to a host directory containing the files and Media Upload Directories to `/uploads`. Leave both blank to keep uploads disabled. The folder is mounted read-only; Media Upload Max Bytes defaults to 50 MiB.
+Version 2.5.0 replaces `sortEvents` with `sort: "Events"` on `update_person` and `update_family`. To upload media in 2.5.1, set the advanced Media Upload Folder to a host directory containing the files, Media Upload Directories to `/uploads`, and Enable Media Resources to `true`. Leave the upload folder and directories blank to keep uploads disabled. The folder is mounted read-only; Media Upload Max Bytes defaults to 50 MiB.
 
 When upgrading from an older Unraid template, remove any saved `GRAMPS_MEDIA_ALLOWED_MIME_TYPES` variable. Version 2.1.0 ignores it and logs a startup warning while it is set.
 
@@ -50,7 +50,7 @@ Official guides:
 - [ ] GitHub repository is public
 - [ ] `ca_profile.xml` has a non-empty `<Profile>` section
 - [ ] `TemplateURL` in each template points at the raw GitHub URL for that XML file on `main`
-- [ ] `ghcr.io/scormave/gramps-web-mcp:2.5.0` is public and pullable
+- [ ] `ghcr.io/scormave/gramps-web-mcp:2.5.1` is public and pullable
 - [ ] Clean install tested on Unraid with valid Gramps Web credentials
 - [ ] Validate and Scan pass in the submission portal
 
