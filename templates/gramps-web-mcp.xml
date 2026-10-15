@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.5.1</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.5.2</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -28,6 +28,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-15 (2.5.2)
+    - Pin container image to 2.5.2
+    - Upgrade the MCP C# SDK to 2.2.0 while retaining supported stdio, HTTP, and legacy SSE behavior.
+    - Reject HTTP/SSE requests from unlisted browser origins with 403; configure trusted origins with MCP_ALLOWED_ORIGINS. Non-browser clients without an Origin header continue to work.
+    - Add an optional Allowed Origins setting to the Unraid template.
+
     ### 2026-10-14 (2.5.1)
     - Pin container image to 2.5.1
     - Require GRAMPS_MEDIA_RESOURCES_ENABLED=true for create_media and update_media filePath uploads; hide create_media when media access is disabled.
@@ -132,6 +138,7 @@
   <Config Name="Gramps Tree ID" Target="GRAMPS_TREE_ID" Default="" Mode="" Description="Tree UUID on the Gramps Web server." Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Read Only Mode" Target="GRAMPS_READ_ONLY" Default="false" Mode="" Description="Set to true to publish only read tools and block direct create, update, and delete calls." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
   <Config Name="MCP API Key" Target="MCP_API_KEY" Default="" Mode="" Description="Optional API key for HTTP/SSE access (Bearer or X-Api-Key). Recommended when the MCP port is reachable from other machines." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="MCP Allowed Origins" Target="MCP_ALLOWED_ORIGINS" Default="" Mode="" Description="Comma-separated trusted browser origins for HTTP/SSE, such as https://app.example.com (no path). Blank rejects requests with an Origin header; non-browser clients need no setting." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Mutation Serialize" Target="GRAMPS_MUTATION_SERIALIZE" Default="true" Mode="" Description="Serialize create, update, and delete HTTP calls in-process to reduce SQLite lock errors." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="Mutation Min Interval MS" Target="GRAMPS_MUTATION_MIN_INTERVAL_MS" Default="0" Mode="" Description="Optional minimum milliseconds between mutation HTTP calls (0 disables pacing)." Type="Variable" Display="advanced" Required="false" Mask="false">0</Config>
   <Config Name="Enable Media Resources" Target="GRAMPS_MEDIA_RESOURCES_ENABLED" Default="false" Mode="" Description="Enable read_media, binary media resources, and uploads via create_media or update_media filePath." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
