@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.5.2</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.6.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
-  <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <Support>https://forums.unraid.net/topic/199622-support-gramps-web-mcp-mcp-server-for-gramps-web-ai-genealogy</Support>
   <Project>https://github.com/Scormave/gramps-web-mcp</Project>
@@ -28,6 +27,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-16 (2.6.0)
+    - Pin container image to 2.6.0
+    - Add Gramps filter rules to list_objects, filter-rule references, and update_tag for tag names, colors, and priorities.
+    - Switch the Docker image to .NET 10 Noble Chiseled without a shell or curl; its built-in health check uses --health-check. Remove the obsolete bash setting from this template.
+    - Declare safer MCP tool hints and improve tool guidance; fix token recovery after Gramps Web restarts and normalize tag colors.
+
     ### 2026-10-15 (2.5.2)
     - Pin container image to 2.5.2
     - Upgrade the MCP C# SDK to 2.2.0 while retaining supported stdio, HTTP, and legacy SSE behavior.
