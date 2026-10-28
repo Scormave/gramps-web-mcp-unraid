@@ -6,7 +6,7 @@ Unraid [Community Applications](https://forums.unraid.net/topic/38582-plug-in-co
 
 | Template | Image | Description |
 |----------|-------|-------------|
-| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:2.6.0` | MCP server for Gramps Web over HTTP |
+| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:2.7.0` | MCP server for Gramps Web over HTTP |
 
 ## Prerequisites
 
@@ -24,6 +24,8 @@ Version 2.5.0 replaces `sortEvents` with `sort: "Events"` on `update_person` and
 Version 2.5.2 rejects HTTP/SSE requests carrying an unlisted browser `Origin`. For a trusted browser-based MCP client, set the advanced MCP Allowed Origins field to its origin (for example, `https://app.example.com`); separate multiple origins with commas. Clients that do not send `Origin` need no change.
 
 Version 2.6.0 uses a smaller container image without a shell or curl. The image has its own health check; if you configured an external curl-based health check, replace it with `dotnet /app/GrampsWeb.Mcp.dll --health-check`.
+
+Version 2.7.0 adds `undo_change` and optional confirmation dialogs for `delete_object` and `undo_change`. The template defaults to `GRAMPS_CONFIRMATION=when-supported`. To enable dialogs over Streamable HTTP, set the advanced MCP Stateless field to `false` and use a client that supports MCP elicitation. Setting Confirmation to `required` refuses these operations when a dialog is unavailable; with the default stateless HTTP mode, they will always be refused.
 
 When upgrading from an older Unraid template, remove any saved `GRAMPS_MEDIA_ALLOWED_MIME_TYPES` variable. Version 2.1.0 ignores it and logs a startup warning while it is set.
 
@@ -54,7 +56,7 @@ Official guides:
 - [ ] GitHub repository is public
 - [ ] `ca_profile.xml` has a non-empty `<Profile>` section
 - [ ] `TemplateURL` in each template points at the raw GitHub URL for that XML file on `main`
-- [ ] `ghcr.io/scormave/gramps-web-mcp:2.6.0` is public and pullable
+- [ ] `ghcr.io/scormave/gramps-web-mcp:2.7.0` is public and pullable
 - [ ] Clean install tested on Unraid with valid Gramps Web credentials
 - [ ] Validate and Scan pass in the submission portal
 

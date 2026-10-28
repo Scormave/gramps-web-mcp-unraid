@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.6.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.7.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-10-27 (2.7.0)
+    - Pin container image to 2.7.0
+    - Add undo_change to preview and revert a Gramps Web transaction, including deletions, with conflict checks.
+    - Add optional confirmation dialogs for delete_object and undo_change. Over Streamable HTTP, set MCP_STATELESS=false and use a client that supports elicitation; GRAMPS_CONFIRMATION controls whether confirmation is optional, required, or off.
+    - Add confirmation settings to the Unraid template. The release also adds pre-publish smoke tests, image scanning, and build provenance attestations.
+
     ### 2026-10-16 (2.6.0)
     - Pin container image to 2.6.0
     - Add Gramps filter rules to list_objects, filter-rule references, and update_tag for tag names, colors, and priorities.
@@ -139,11 +145,13 @@
   <Config Name="Gramps API URL" Target="GRAMPS_API_URL" Default="" Mode="" Description="Base URL of your Gramps Web instance (no trailing slash)." Type="Variable" Display="always" Required="true" Mask="false">https://gramps.example.com</Config>
   <Config Name="Gramps Username" Target="GRAMPS_USERNAME" Default="" Mode="" Description="Gramps Web API username; use with Gramps Password, or leave blank when using a refresh token." Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Gramps Password" Target="GRAMPS_PASSWORD" Default="" Mode="" Description="Gramps Web API password; use with Gramps Username, or leave blank when using a refresh token." Type="Variable" Display="always" Required="false" Mask="true"/>
-  <Config Name="Gramps Refresh Token" Target="GRAMPS_REFRESH_TOKEN" Default="" Mode="" Description="Alternative to username and password, including when local password authentication is disabled." Type="Variable" Display="always" Required="false" Mask="true"/>
+  <Config Name="Gramps Refresh Token" Target="GRAMPS_REFRESH_TOKEN" Default="" Mode="" Description="Alternative to username and password, including when local password authentication is disabled. Takes precedence if both methods are set." Type="Variable" Display="always" Required="false" Mask="true"/>
   <Config Name="Gramps Tree ID" Target="GRAMPS_TREE_ID" Default="" Mode="" Description="Tree UUID on the Gramps Web server." Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Read Only Mode" Target="GRAMPS_READ_ONLY" Default="false" Mode="" Description="Set to true to publish only read tools and block direct create, update, and delete calls." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
-  <Config Name="MCP API Key" Target="MCP_API_KEY" Default="" Mode="" Description="Optional API key for HTTP/SSE access (Bearer or X-Api-Key). Recommended when the MCP port is reachable from other machines." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="Confirmation" Target="GRAMPS_CONFIRMATION" Default="when-supported" Mode="" Description="For delete_object and undo_change: when-supported asks capable clients; required refuses calls without a confirmation dialog; off skips it. HTTP dialogs also need MCP Stateless=false." Type="Variable" Display="advanced" Required="false" Mask="false">when-supported</Config>
+  <Config Name="MCP API Key" Target="MCP_API_KEY" Default="" Mode="" Description="Optional HTTP/SSE API key (Bearer or X-Api-Key), at least 16 characters. Comma-separated keys allow rotation. Recommended when the MCP port is reachable from other machines." Type="Variable" Display="advanced" Required="false" Mask="true"/>
   <Config Name="MCP Allowed Origins" Target="MCP_ALLOWED_ORIGINS" Default="" Mode="" Description="Comma-separated trusted browser origins for HTTP/SSE, such as https://app.example.com (no path). Blank rejects requests with an Origin header; non-browser clients need no setting." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="MCP Stateless" Target="MCP_STATELESS" Default="true" Mode="" Description="Streamable HTTP defaults to stateless. Set false to allow confirmation dialogs in clients that support MCP elicitation; sessions then stay open." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="Mutation Serialize" Target="GRAMPS_MUTATION_SERIALIZE" Default="true" Mode="" Description="Serialize create, update, and delete HTTP calls in-process to reduce SQLite lock errors." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="Mutation Min Interval MS" Target="GRAMPS_MUTATION_MIN_INTERVAL_MS" Default="0" Mode="" Description="Optional minimum milliseconds between mutation HTTP calls (0 disables pacing)." Type="Variable" Display="advanced" Required="false" Mask="false">0</Config>
   <Config Name="Enable Media Resources" Target="GRAMPS_MEDIA_RESOURCES_ENABLED" Default="false" Mode="" Description="Enable read_media, binary media resources, and uploads via create_media or update_media filePath." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
