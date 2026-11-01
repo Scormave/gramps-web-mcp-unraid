@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.8.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.8.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-01 (2.8.1)
+    - Pin container image to 2.8.1
+    - Clarify create_records usage and how create, search, bookmark, and update tool arguments and results work.
+    - Default family event links without a role to Family rather than Primary; preserve an existing role in replace mode when none is supplied.
+    - Default new families without relationshipType to Unknown rather than Married; pass Married explicitly when a source documents the marriage.
+
     ### 2026-11-01 (2.8.0)
     - Pin container image to 2.8.0
     - Add create_records to create up to 50 linked records in one atomic Gramps Web transaction; import-from-text now uses it.
