@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.7.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.8.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-01 (2.8.0)
+    - Pin container image to 2.8.0
+    - Add create_records to create up to 50 linked records in one atomic Gramps Web transaction; import-from-text now uses it.
+    - Fix undo_change when one transaction modifies a record more than once, and restore names for deleted records with attributes or web links.
+    - Clarify Gramps QL syntax in list_objects and get_relations limits; update the MCP C# SDK to 2.3.0.
+
     ### 2026-10-27 (2.7.0)
     - Pin container image to 2.7.0
     - Add undo_change to preview and revert a Gramps Web transaction, including deletions, with conflict checks.
