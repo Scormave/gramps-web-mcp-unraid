@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.8.1</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.9.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,15 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-03 (2.9.1)
+    - Pin container image to 2.9.1; the server is unchanged from 2.9.0.
+    - Fix cross-platform release tests so MCPB bundles and standalone binary archives are published.
+
+    ### 2026-11-03 (2.9.0)
+    - Add merge_objects to merge duplicate records in one transaction with user confirmation and undo support.
+    - Check new people for likely duplicates across alternate spellings and surname forms; add find_duplicates and the audit-tree prompt.
+    - Validate person name fields instead of silently dropping unrecognized or invalid alternate-name data; improve undo transaction descriptions and tool guidance.
+
     ### 2026-11-01 (2.8.1)
     - Pin container image to 2.8.1
     - Clarify create_records usage and how create, search, bookmark, and update tool arguments and results work.
