@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.9.1</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.10.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,13 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-10 (2.10.0)
+    - Pin container image to 2.10.0
+    - Add structured addresses and typed links to repository create/update tools and create_records; retain one-line address and URL shortcuts.
+    - Support attributes on person and family event links and media links, preserving unchanged metadata when updating.
+    - Show event/media link attributes and repository addresses and links in get_object; omit unknown dates for undated addresses.
+    - Run unit tests on Windows in CI and update sponsor links.
+
     ### 2026-11-03 (2.9.1)
     - Pin container image to 2.9.1; the server is unchanged from 2.9.0.
     - Fix cross-platform release tests so MCPB bundles and standalone binary archives are published.
