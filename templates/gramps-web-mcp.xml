@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.10.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.10.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,11 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-16 (2.10.1)
+    - Pin container image to 2.10.1
+    - Fix type names for deleted records shown by undo_change; resolve Gramps type values correctly instead of using their list positions.
+    - Rebuild the Docker image on .NET 10.0.15 to fix three HIGH-severity ASP.NET Core vulnerabilities present in the 2.10.0 image.
+
     ### 2026-11-10 (2.10.0)
     - Pin container image to 2.10.0
     - Add structured addresses and typed links to repository create/update tools and create_records; retain one-line address and URL shortcuts.
