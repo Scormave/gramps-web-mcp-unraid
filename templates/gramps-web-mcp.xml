@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.10.1</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.0</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,13 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-18 (2.11.0)
+    - Pin container image to 2.11.0
+    - Add per-record history to get_recent_changes, including field-level before and after values (Gramps Web API 3.22+).
+    - Add GRAMPS_REQUIRE_USER_INTERACTION to control tool metadata for delete_object, merge_objects and undo_change; default true preserves client permission prompts.
+    - Add experimental chat attachment uploads through HTTPS links from GRAMPS_MEDIA_UPLOAD_HOSTS; media access remains required and uploads are disabled until trusted hosts are configured.
+    - Correct forced-delete guidance for linked records.
+
     ### 2026-11-16 (2.10.1)
     - Pin container image to 2.10.1
     - Fix type names for deleted records shown by undo_change; resolve Gramps type values correctly instead of using their list positions.
@@ -181,7 +188,8 @@
   <Config Name="Gramps Refresh Token" Target="GRAMPS_REFRESH_TOKEN" Default="" Mode="" Description="Alternative to username and password, including when local password authentication is disabled. Takes precedence if both methods are set." Type="Variable" Display="always" Required="false" Mask="true"/>
   <Config Name="Gramps Tree ID" Target="GRAMPS_TREE_ID" Default="" Mode="" Description="Tree UUID on the Gramps Web server." Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Read Only Mode" Target="GRAMPS_READ_ONLY" Default="false" Mode="" Description="Set to true to publish only read tools and block direct create, update, and delete calls." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
-  <Config Name="Confirmation" Target="GRAMPS_CONFIRMATION" Default="when-supported" Mode="" Description="For delete_object and undo_change: when-supported asks capable clients; required refuses calls without a confirmation dialog; off skips it. HTTP dialogs also need MCP Stateless=false." Type="Variable" Display="advanced" Required="false" Mask="false">when-supported</Config>
+  <Config Name="Confirmation" Target="GRAMPS_CONFIRMATION" Default="when-supported" Mode="" Description="For delete_object, merge_objects and undo_change: when-supported asks capable clients; required refuses calls without a confirmation dialog; off skips it. HTTP dialogs also need MCP Stateless=false." Type="Variable" Display="advanced" Required="false" Mask="false">when-supported</Config>
+  <Config Name="Require User Interaction" Target="GRAMPS_REQUIRE_USER_INTERACTION" Default="true" Mode="" Description="Set false to omit anthropic/requiresUserInteraction metadata from delete_object, merge_objects and undo_change; client permission settings then decide. Does not disable server confirmation dialogs." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="MCP API Key" Target="MCP_API_KEY" Default="" Mode="" Description="Optional HTTP/SSE API key (Bearer or X-Api-Key), at least 16 characters. Comma-separated keys allow rotation. Recommended when the MCP port is reachable from other machines." Type="Variable" Display="advanced" Required="false" Mask="true"/>
   <Config Name="MCP Allowed Origins" Target="MCP_ALLOWED_ORIGINS" Default="" Mode="" Description="Comma-separated trusted browser origins for HTTP/SSE, such as https://app.example.com (no path). Blank rejects requests with an Origin header; non-browser clients need no setting." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="MCP Stateless" Target="MCP_STATELESS" Default="true" Mode="" Description="Streamable HTTP defaults to stateless. Set false to allow confirmation dialogs in clients that support MCP elicitation; sessions then stay open." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
@@ -192,6 +200,7 @@
   <Config Name="Allow Private Media" Target="GRAMPS_MEDIA_ALLOW_PRIVATE" Default="false" Mode="" Description="Allow media bytes for Gramps records marked private." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="Media Upload Folder" Target="/uploads" Default="" Mode="ro" Description="Optional host folder containing files to upload. Also enable Media Resources and set Media Upload Directories to /uploads." Type="Path" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Media Upload Directories" Target="GRAMPS_MEDIA_UPLOAD_DIRS" Default="" Mode="" Description="Absolute container folders allowed for media uploads, separated by colons; use /uploads with the Media Upload Folder mapping. Uploads also require Enable Media Resources=true." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Media Upload Hosts" Target="GRAMPS_MEDIA_UPLOAD_HOSTS" Default="" Mode="" Description="Experimental chat attachment uploads: comma-separated trusted host names (including subdomains), without scheme, port or path. HTTPS and Enable Media Resources are required. Blank disables this source." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Media Upload Max Bytes" Target="GRAMPS_MEDIA_UPLOAD_MAX_BYTES" Default="52428800" Mode="" Description="Maximum size in bytes for a file uploaded by create_media or update_media (default 50 MiB)." Type="Variable" Display="advanced" Required="false" Mask="false">52428800</Config>
   <Config Name="Gramps Log Level" Target="GRAMPS_LOG_LEVEL" Default="Information" Mode="" Description="Server log level: Trace, Debug, Information, Warning, Error, Critical, or None. Debug and Trace log genealogy data from API bodies." Type="Variable" Display="advanced" Required="false" Mask="false">Information</Config>
   <Config Name="MCP HTTP Port" Target="8080" Default="8080" Mode="tcp" Description="Host port mapped to container port 8080 (MCP endpoint at /mcp)." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
