@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.0</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.1</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,11 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-19 (2.11.1)
+    - Pin container image to 2.11.1
+    - Restore media upload duplicate checks and list_objects sourceHandle filtering on Gramps Web API 3.26+, which removed Gramps QL; use GOQL MatchesQuery rules there and retain Gramps QL on older servers.
+    - Explain that list_objects gql is unavailable on API 3.26+ and point clients to MatchesQuery rules; update audit-tree to use HasSourceCount.
+
     ### 2026-11-18 (2.11.0)
     - Pin container image to 2.11.0
     - Add per-record history to get_recent_changes, including field-level before and after values (Gramps Web API 3.22+).
