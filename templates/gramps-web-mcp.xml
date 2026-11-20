@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.1</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.2</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,12 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-20 (2.11.2)
+    - Pin container image to 2.11.2
+    - Resolve custom-format Gramps IDs by exact ID for record arguments, including sourceHandle, when the value is not a handle; accept custom IDs with objectType in get_object and get_recent_changes.
+    - Return a clear error when list_objects receives a nonexistent sourceHandle instead of an empty citation list.
+    - Treat tag arguments as handles even when they resemble Gramps IDs, avoiding lookup errors on Gramps Web API 3.26.
+
     ### 2026-11-19 (2.11.1)
     - Pin container image to 2.11.1
     - Restore media upload duplicate checks and list_objects sourceHandle filtering on Gramps Web API 3.26+, which removed Gramps QL; use GOQL MatchesQuery rules there and retain Gramps QL on older servers.
