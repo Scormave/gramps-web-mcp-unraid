@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.2</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.3</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,11 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-22 (2.11.3)
+    - Pin container image to 2.11.3
+    - Handle Claude desktop Code tab clients that immediately decline unseen MCP confirmation dialogs: with GRAMPS_CONFIRMATION=when-supported, rely on the client's permission prompt and chat confirmation; with required, refuse the action and explain why.
+    - Keep delete_object, merge_objects and undo_change blocked when a dialog is declined after being shown, accepted without a checkbox, or closed.
+
     ### 2026-11-20 (2.11.2)
     - Pin container image to 2.11.2
     - Resolve custom-format Gramps IDs by exact ID for record arguments, including sourceHandle, when the value is not a handle; accept custom IDs with objectType in get_object and get_recent_changes.
