@@ -6,7 +6,7 @@ Unraid [Community Applications](https://forums.unraid.net/topic/38582-plug-in-co
 
 | Template | Image | Description |
 |----------|-------|-------------|
-| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:2.11.3` | MCP server for Gramps Web over HTTP |
+| [gramps-web-mcp](templates/gramps-web-mcp.xml) | `ghcr.io/scormave/gramps-web-mcp:2.11.4` | MCP server for Gramps Web over HTTP |
 
 ## Prerequisites
 
@@ -30,6 +30,8 @@ Version 2.7.0 adds `undo_change` and optional confirmation dialogs for `delete_o
 Version 2.8.1 defaults new families to an Unknown relationship type unless `relationshipType` is supplied. MCP clients creating a family with a documented marriage should pass `relationshipType: "Married"` explicitly.
 
 Version 2.11.0 adds experimental uploads of files attached in chat. Set Media Upload Hosts to the trusted file host names served by your client, separated by commas, and enable Media Resources. Enter host names only, without `https://`, a port or a path. The default blank value keeps chat attachment uploads disabled. The new Require User Interaction setting controls client permission metadata for delete, merge and undo tools; it does not disable the server's confirmation dialogs.
+
+Version 2.11.4 confirms chat attachment uploads in ChatGPT on the web. For ChatGPT, set Media Upload Hosts to `oaiusercontent.com,oaisdmntpr*.blob.core.windows.net`. A host entry may contain one `*` in its first label to match characters within that label; it cannot match a dot. Keep Media Resources enabled.
 
 When upgrading from an older Unraid template, remove any saved `GRAMPS_MEDIA_ALLOWED_MIME_TYPES` variable. Version 2.1.0 ignores it and logs a startup warning while it is set.
 
@@ -60,7 +62,7 @@ Official guides:
 - [ ] GitHub repository is public
 - [ ] `ca_profile.xml` has a non-empty `<Profile>` section
 - [ ] `TemplateURL` in each template points at the raw GitHub URL for that XML file on `main`
-- [ ] `ghcr.io/scormave/gramps-web-mcp:2.11.3` is public and pullable
+- [ ] `ghcr.io/scormave/gramps-web-mcp:2.11.4` is public and pullable
 - [ ] Clean install tested on Unraid with valid Gramps Web credentials
 - [ ] Validate and Scan pass in the submission portal
 

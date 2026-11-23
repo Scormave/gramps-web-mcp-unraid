@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>gramps-web-mcp</Name>
-  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.3</Repository>
+  <Repository>ghcr.io/scormave/gramps-web-mcp:2.11.4</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
@@ -27,6 +27,11 @@
   <ReadMe>https://github.com/Scormave/gramps-web-mcp/blob/main/README.md</ReadMe>
   <Requires>Internet access to pull the container image and reach your Gramps Web API URL.</Requires>
   <Changes>
+    ### 2026-11-23 (2.11.4)
+    - Pin container image to 2.11.4
+    - Confirm chat attachment uploads in ChatGPT on the web through create_media and update_media.
+    - Allow one * in the first label of a GRAMPS_MEDIA_UPLOAD_HOSTS entry so changing regional ChatGPT storage hosts can be trusted with oaiusercontent.com,oaisdmntpr*.blob.core.windows.net.
+
     ### 2026-11-22 (2.11.3)
     - Pin container image to 2.11.3
     - Handle Claude desktop Code tab clients that immediately decline unseen MCP confirmation dialogs: with GRAMPS_CONFIRMATION=when-supported, rely on the client's permission prompt and chat confirmation; with required, refuse the action and explain why.
@@ -216,7 +221,7 @@
   <Config Name="Allow Private Media" Target="GRAMPS_MEDIA_ALLOW_PRIVATE" Default="false" Mode="" Description="Allow media bytes for Gramps records marked private." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="Media Upload Folder" Target="/uploads" Default="" Mode="ro" Description="Optional host folder containing files to upload. Also enable Media Resources and set Media Upload Directories to /uploads." Type="Path" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Media Upload Directories" Target="GRAMPS_MEDIA_UPLOAD_DIRS" Default="" Mode="" Description="Absolute container folders allowed for media uploads, separated by colons; use /uploads with the Media Upload Folder mapping. Uploads also require Enable Media Resources=true." Type="Variable" Display="advanced" Required="false" Mask="false"/>
-  <Config Name="Media Upload Hosts" Target="GRAMPS_MEDIA_UPLOAD_HOSTS" Default="" Mode="" Description="Experimental chat attachment uploads: comma-separated trusted host names (including subdomains), without scheme, port or path. HTTPS and Enable Media Resources are required. Blank disables this source." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Media Upload Hosts" Target="GRAMPS_MEDIA_UPLOAD_HOSTS" Default="" Mode="" Description="Chat attachment uploads: comma-separated trusted hosts, without scheme, port or path. One * may match characters within the first host label; for ChatGPT use oaiusercontent.com,oaisdmntpr*.blob.core.windows.net. HTTPS and Enable Media Resources are required. Blank disables this source." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Media Upload Max Bytes" Target="GRAMPS_MEDIA_UPLOAD_MAX_BYTES" Default="52428800" Mode="" Description="Maximum size in bytes for a file uploaded by create_media or update_media (default 50 MiB)." Type="Variable" Display="advanced" Required="false" Mask="false">52428800</Config>
   <Config Name="Gramps Log Level" Target="GRAMPS_LOG_LEVEL" Default="Information" Mode="" Description="Server log level: Trace, Debug, Information, Warning, Error, Critical, or None. Debug and Trace log genealogy data from API bodies." Type="Variable" Display="advanced" Required="false" Mask="false">Information</Config>
   <Config Name="MCP HTTP Port" Target="8080" Default="8080" Mode="tcp" Description="Host port mapped to container port 8080 (MCP endpoint at /mcp)." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
